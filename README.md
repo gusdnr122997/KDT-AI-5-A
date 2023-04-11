@@ -7,5 +7,4 @@
 ### Month1
 
 #### Week5
-- [Day2 & Day3]()
-)
+- [Day2 & Day3](https://github.com/gusdnr122997/KDT-AI-5-A/tree/main/month1)
