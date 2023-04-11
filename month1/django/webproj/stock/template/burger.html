@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Burger List</title>
+    </head>
+    <body>
+        <h1>Current Burger List</h1>
+        {% for burger in burger_list %}
+            <p> {{ burger.name }}, {{ burger.price }}, {{ burger.stock }} </p>
+        {% endfor %}
+
+        <!-- <form method="POST">{% csrf_token %}
+            {{ coffee_form.as_p }}
+            <button type="submit">Save</button>
+        </form> -->
+    </body>
+</html>

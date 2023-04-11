@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <title>Coffee List</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Current Coffee List</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Ice</th>
+                        <th scope="col">Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for coffee in coffee_list %}
+                        <tr>
+                            <th scope="col"><a  href="/coffees/{{ coffee.cid }}">{{ coffee.cid }}</a></th>
+                            <th scope="col">{{ coffee.name }}</th>
+                            <th scope="col">{{ coffee.price }}</th>
+                            <th scope="col">{{ coffee.is_ice }}</th>
+                            <th scope="col">{{ coffee.stock }}</th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr color="black">
+    {% if not pk %}
+        <div class="container">
+            <h2>Add New Coffee</h2>
+            <form method="POST">{% csrf_token %}
+                {{ coffee_post.as_p }}
+                <button class="btn btn-primary" type="submit">POST</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="container">
+            <h2>Update Coffee</h2>
+            <form method="POST">{% csrf_token %}
+                {{ coffee_put.as_p }}
+                <input type="hidden" name="_method" value="PUT"/>
+                <input class="btn btn-primary" type="submit" value="PUT">
+            </form>
+        </div>
+        <hr color="black">
+        <div class="container">
+            <h2>Delete Coffee</h2>
+            <form method="POST">{% csrf_token %}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <input class="btn btn-primary" type="submit" value="DELETE">
+            </form>
+        </div>
+    {% endif %}
+    <hr>
+    <div class="container"iv>
+        <button class="btn btn-primary" onclick="location.href = '/'">
+            Home
+        </button>
+    </div>
+    </body>
+</html>
