@@ -1,0 +1,393 @@
+<!DOCTYPE html> {% load static %}
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>[7조] EDA 분석 결과</title>
+
+    <link href="./Album example · Bootstrap v5.2_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <!-- Favicons -->
+    <link rel="apple-touch-icon" href="https://getbootstrap.kr/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="https://getbootstrap.kr/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="https://getbootstrap.kr/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="https://getbootstrap.kr/docs/5.2/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="https://getbootstrap.kr/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="https://getbootstrap.kr/docs/5.2/assets/img/favicons/favicon.ico">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+    <meta name="theme-color" content="#712cf9">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    
+<header>
+  <div class="bg-dark collapse" id="navbarHeader" style="">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">[7조] Monthly Project 1 EDA 결과 홈페이지</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <strong>EDA 분석 결과</strong>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Monthly Project 7조
+          <br>데이터 분석 결과</h1>
+          <br>
+        <p class="lead text-muted">항공편 데이터 출처</p>
+        <p class="lead text-muted"><a href="https://dacon.io/competitions/official/236094/data">항공편 지연 여부 데이터</a></p>
+        <p class="lead text-muted"><a href="https://www.kaggle.com/datasets/aravindram11/list-of-us-airports">공항 정보 데이터</a></p>
+        <p class="lead text-muted"><a href="https://www.kaggle.com/datasets/sobhanmoosavi/us-weather-events">공항 날씨 데이터</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-airplane-3182984.png' %}">
+            <div class="card-body">
+              <p class="card-text">항공사 별 지연 수 및 지연율</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                      <div>
+                        <a href="javascript:openPop('popup_layer1')" class="btn btn-sm btn-outline-secondary">열기</a>
+                      </div>
+                      <div class="popup_layer" id="popup_layer1" style="display: none;">
+                        <div class="popup_box">
+                            <!--팝업 컨텐츠 영역-->
+                            <div class="popup_cont">
+                              <h2 style="text-align: center;">항공사 별 지연 수 및 지연율</h2>
+                              <br>
+                              <img src="{%static 'img/항공사별지연율.png' %}" style="width:1000px ; height:500px;">
+                            </div>
+                            <!--팝업 버튼 영역-->
+                            <div class="popup_btn" style="float: bottom;">
+                                <a href="javascript:closePop('popup_layer1');">닫기</a>
+                            </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/weather.png' %}">
+            <div class="card-body">
+              <p class="card-text">날씨 별 지연율</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer2')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer2" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">날씨 별 지연율</h2>
+                            <br>
+                            <img src="{%static 'img/날씨별지연율.png' %}" style="width:1000px ; height:500px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer2');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-expired-6606292.png' %}">
+            <div class="card-body">
+              <p class="card-text">출발 공항 별 지연 비율 분포(개수 순)</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer3')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer3" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">출발 공항 별 지연 비율 분포(개수 순)</h2>
+                            <br>
+                            <img src="{%static 'img/공항별지연율개수순.png' %}" style="width:1000px ; height:600px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer3');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-airport-1830387.png' %}">
+            <div class="card-body">
+              <p class="card-text">출발 공항 별 지연 비율 분포(비율 순)</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer4')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer4" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">출발 공항 별 지연 비율 분포(비율 순)</h2>
+                            <br>
+                            <img src="{%static 'img/공항별지연율비율순.png' %}" style="width:1000px ; height:600px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer4');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-route-818284.png' %}">
+            <div class="card-body">
+              <p class="card-text">거리 구간 별 지연 비율</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer5')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer5" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">거리 구간 별 지연 비율</h2>
+                            <br>
+                            <img src="{%static 'img/거리구간별지연율.png' %}" style="width:1000px ; height:650px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer5');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-map-854878.png' %}">
+            <div class="card-body">
+              <p class="card-text">공항별 항공편 빈도 heatmap 지도</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer6')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer6" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">공항별 항공편 빈도 heatmap 지도</h2>
+                            <br>
+                            <img src="{%static 'img/지도1.png' %}" style="width:1000px ; height:600px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer6');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-heatmap-6868944.png' %}">
+            <div class="card-body">
+              <p class="card-text">공항별 지연 빈도 heatmap 지도</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer7')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer7" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">공항별 지연 빈도 heatmap 지도</h2>
+                            <br>
+                            <img src="{%static 'img/지도2.png' %}" style="width:1000px ; height:500px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer7');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{%static 'img/icon/free-icon-plane-ticket-3127363.png' %}">
+            <div class="card-body">
+              <p class="card-text">출발-도착 공항 간 항공편 지연 빈도</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="popup" onclick="popup()">
+                    <div>
+                      <a href="javascript:openPop('popup_layer8')" class="btn btn-sm btn-outline-secondary">열기</a>
+                    </div>
+                    <div class="popup_layer" id="popup_layer8" style="display: none;">
+                      <div class="popup_box">
+                          <!--팝업 컨텐츠 영역-->
+                          <div class="popup_cont">
+                            <h2 style="text-align: center;">출발-도착 공항 간 항공편 지연 빈도</h2>
+                            <br>
+                            <img src="{%static 'img/루트별항공편수.png' %}" style="width:1000px ; height:500px;">
+                          </div>
+                          <!--팝업 버튼 영역-->
+                          <div class="popup_btn" style="float: bottom;">
+                              <a href="javascript:closePop('popup_layer8');">닫기</a>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">위로</a>
+    </p>
+  </div>
+</footer>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body></html>
